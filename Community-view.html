@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>커뮤니티 글 모두 보기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<style>
+h3{
+	font-family: 'Jua', sans-serif;
+}
+table{
+	background-color : aliceblue;
+	font-family: 'Jua', sans-serif;
+}
+span {
+	border : 1px solid yellowgreen;
+	padding-left : 3px;
+	padding-right : 3px;
+	font-family: 'Jua', sans-serif;
+}
+ <!--td, th {
+	height : 100px;
+	padding-right : 5px;
+	text-align :right;
+	font-family: 'Jua', sans-serif;
+}-->
+</style>
+</head>
+<body>
+<header><img src="숙몽냥 배너.jpg" width=100% overflow=hidden>
+</header>
+<h3>커뮤니티 글 모두 보기</h3>
+<hr>
+
+<script>
+if(window.localStorage){
+	document.write("<table>");
+
+	for(i=0 ; i < localStorage.length ; i++){
+		let key = localStorage.key(i);
+		let val = localStorage.getItem(key);
+		
+		document.write("<tr>");
+		document.write("<td><span>" + (i+1) + "번째 글</span><td>");
+		document.write("<th><img src=" + key+".jpg width=90 weight=190></th>");
+		document.write("<td>"+val+"</td>");
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
+else
+	alert("지원하지 않습니다.");
+</script>
+</body>
+</html>
+
