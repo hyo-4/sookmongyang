@@ -13,15 +13,11 @@ function makeCursor() {
 	}
 }
 
-const slideDelay = 2000;
-const dynamicSlider = document.getElementById("slider");
-
-      var curSlide = 0;
-      window.setInterval(()=>{
-        curSlide++;
-        if (curSlide === dynamicSlider.childElementCount) {
-          curSlide = 0;
-        }
-        dynamicSlider.firstElementChild.style.setProperty("margin-left", "-" + curSlide + "00%");
-      }, slideDelay);
-
+   var counter = 1;
+    setInterval(function(){
+      document.getElementById('radio' + counter).checked = true;
+      counter++;
+      if(counter > 4){
+        counter = 1;
+      }
+    }, 2000);
