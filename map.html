@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>동물병원 및 보호소 지도</title>
+ 	 <link rel="stylesheet" href="mainpage.css">
+
+</head>
+<body>
+<header>
+<img src="images/logo.png" width="300px" height="300px">
+</header>
+<div class="wrap"> 
+<nav class="menu_bar"> 
+ <ul class="menu">
+ 
+ <li class="menu_list" id = 'menu'> <a href="" class="link">입양 안내</a></li>
+  <li class="menu_list"id = 'menu'> <a href="" class="link">커뮤니티</a> </li> 
+  <li class="menu_list"id = 'menu'> <a href="" class="link">지도</a> </li> 
+  <li class="menu_list"id = 'menu'> <a href="moreinfo.html" class="link">캠페인</a> </li> 
+  
+  </ul>
+  <img src="images/dog5.jpg" width="80px" height="80px">
+  </nav>
+</div>
+
+<section>
+
+
+<div id="msg">이곳에  위치 정보 출력</div>
+<iframe id="map" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" 		marginwidth="0" ></iframe><br/>
+<a id="bigmaplink" target="_blank">새 창에 큰 지도 보기</a>
+<script>
+
+// Lab13-4 내용 복사하기
+if(navigator.geolocation) // 현재 위치 정보 요청
+	navigator.geolocation.getCurrentPosition(success);
+else
+	alert("지원하지 않음");
+
+function success(position) {
+	let lat = position.coords.latitude; // 위도
+	let lon = position.coords.longitude; // 경도
+	let acc = position.coords.accuracy; // 정확도
+
+	// 위도와 경도의 소수점 이하 자리가 너무 긴 경우 유효 숫자 6자리로 짜름
+	lat = lat.toPrecision(6);
+	lon = lon.toPrecision(6);
+
+	let now = new Date(); // 현재 날짜와 시간
+
+  // 화면에 현재 시간, 현재 위치, 정확도 출력해주기
+	text += "현재 위치 (위도 " + lat + "º, 경도 " + lon + "º)" + "<br>"; // + 현재 위치
+	text += "정확도 " + acc + "m"; // + 정확도
+	// 내용 출력
+	document.getElementById("msg").innerHTML = text;
+
+
+// 지도 출력
+	let map = document.getElementById("map");
+	map.src ="https://www.openstreetmap.org/export/embed.html?bbox=" + (parseFloat(lon)-0.01) + "%2C" + (parseFloat(lat)-0.01) + "%2C" + (parseFloat(lon)+0.01) + "%2C" + (parseFloat(lat) + 0.01);
+ 		// lat와 lon은 문자열이므로 숫자로 바꾸기 위해 parseFloat() 사용
+		
+ 	let maplink = document.getElementById("bigmaplink");
+	let zoom = 15; // 지도의 줌 레벨 15로 설정
+	maplink.href = "https://www.openstreetmap.org/#map=" + zoom 
+	+ "/" + lat + "/" + lon;
+}
+</script>
+
+
+
+</section>
+</body>
+</html>
