@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티 글 모두 보기</title>
+<link rel="stylesheet" type="text/css" href="menu.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -15,25 +16,34 @@ table{
 	font-family: 'Jua', sans-serif;
 }
 span {
-	border : 1px solid yellowgreen;
 	padding-left : 3px;
 	padding-right : 3px;
 	font-family: 'Jua', sans-serif;
 }
- <!--td, th {
-	height : 100px;
-	padding-right : 5px;
-	text-align :right;
-	font-family: 'Jua', sans-serif;
-}-->
 </style>
 </head>
+
 <body>
-<header><img src="숙몽냥 배너.jpg" width=100% overflow=hidden>
+<header>
+<img src="logo.png" 
+style="display: block;
+ margin: 0 auto;
+ width:200px; height:200px;">
 </header>
+
+<div class="wrap"> 
+<nav class="menu_bar"> 
+ <ul class="menu">
+  <li class="menu_list" id = 'menu'> <a href="" class="link">입양 안내</a></li>
+  <li class="menu_list"id = 'menu'> <a href="" class="link">커뮤니티</a> </li> 
+  <li class="menu_list"id = 'menu'> <a href="" class="link">지도</a> </li> 
+  <li class="menu_list"id = 'menu'> <a href="moreinfo.html" class="link">캠페인</a> </li> 
+ </ul> 
+  </nav>
+</div>
+
 <h3>커뮤니티 글 모두 보기</h3>
 <hr>
-
 <script>
 if(window.localStorage){
 	document.write("<table>");
@@ -52,7 +62,15 @@ if(window.localStorage){
 }
 else
 	alert("지원하지 않습니다.");
+	
+function viewAll() {
+	window.open("Community.html", "viewwin");
+}	
 </script>
+
+<form>
+<input type="button" value="글쓰기" onclick="viewAll()">
+</form>
+
 </body>
 </html>
-
