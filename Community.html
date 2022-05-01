@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티 글쓰기</title>
+<link rel="stylesheet" type="text/css" href="menu.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-
-//글 저장 alert창 추가
+</head>
 
 <script>
-function store() {
+function store(){
 	//localstorage 있는지 확인 -> 없으면 alert창 & return
 	if(!window.localStorage){
 		alert("");
@@ -35,13 +35,16 @@ function store() {
 	// 로컬 스토리지에 저장(혹은 수정)
 	localStorage.setItem(fileName, space);
 
+	alert("글이 저장되었습니다.");
 	// 저장 후 <input>에 입력된 단어 지우기
-	fileName = null;
-	space = null;
+	chooseFile.value = "";
+	space.value = "";
+
 }
 
 function viewAll() {
 	window.open("Community-view.html", "viewwin");
+}	
 
 </script>
 
@@ -52,6 +55,7 @@ h3{
 
 textarea {
 	font-size : 1.1em;
+	
 	font-family: 'Jua', sans-serif;
 }
 
@@ -59,16 +63,37 @@ button{
 font-family: 'Jua', sans-serif;
 }
 
+form{
+font-family: 'Jua', sans-serif;
+}
+
 </style>
-</head>
+
 <body>
-<header><img src="숙몽냥 배너.jpg" width=100% overflow=hidden>
+
+<header>
+<img src="logo.png" 
+style="display: block;
+ margin: 0 auto;
+ width:200px; height:200px;">
 </header>
+
+<div class="wrap"> 
+<nav class="menu_bar"> 
+ <ul class="menu">
+  <li class="menu_list" id = 'menu'> <a href="" class="link">입양 안내</a></li>
+  <li class="menu_list"id = 'menu'> <a href="" class="link">커뮤니티</a> </li> 
+  <li class="menu_list"id = 'menu'> <a href="" class="link">지도</a> </li> 
+  <li class="menu_list"id = 'menu'> <a href="moreinfo.html" class="link">캠페인</a> </li> 
+ </ul> 
+  </nav>
+</div>
+
+
 <h3>커뮤니티 글쓰기</h3>
 <hr>
 <form>
-	<input id="chooseFile" type="file" 
-	name="chooseFile" accept="image/*">사진 업로드</input><br><br>
+	<br>사진 업로드<input id="chooseFile" type="file" name="chooseFile" accept="image/*"><br><br>
 
 	<textarea id="space" cols="50" rows="10">
 반려동물의 이름 : <br>
@@ -76,8 +101,9 @@ font-family: 'Jua', sans-serif;
 내용 : <br>
 	</textarea><br>
 	<br>
-<input type="button" value="전체 보기" onclick="viewAll()">
+
 <input type="button" value="저장" onclick="store()">
+<span><input type="button" class="custom-btn btn-8" value="전체 글 보기" onclick="viewAll()"></span>
 </form>
 </body>
 </html>
