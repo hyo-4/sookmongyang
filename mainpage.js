@@ -21,3 +21,22 @@ function makeCursor() {
         counter = 1;
       }
     }, 2000);
+
+//교재 9-8 실습 문제 활용
+var ret = null; 
+window.onclick = function(e)
+{
+    if(e.target.tagName.toLowerCase() != "li")
+    	return;
+    else{
+		e.target.style.fontSize = "1.2em";
+		e.target.style.color = "#63cfa7";
+		}
+    
+    if(ret != null)
+    {
+        ret.style.fontSize = "1em";
+		ret.style.color = "black";
+    }
+    ret = e.target;
+}

@@ -31,7 +31,7 @@ th, td {
 div.wrap{
 	
 	font-family: 'Jua', sans-serif;
-	width:100%;
+	width:1920px;
 	height: 100px;
 	background-color: #393E46;
 	
@@ -76,8 +76,6 @@ li.menu_list a:hover:not(.active) {
     background-color: #111;
 }
 
-/*silde*/
-
 .slider{
 
   width: 900px;
@@ -105,8 +103,6 @@ li.menu_list a:hover:not(.active) {
   width: 800px;
   height: 500px;
 }
-
-/*css for manual slide navigation*/
 
 .navigation-manual{
   position: absolute;
@@ -148,15 +144,6 @@ li.menu_list a:hover:not(.active) {
   margin-left: -60%;
 }
 
-#radio5:checked ~ .first{
-  margin-left: -80%;
-}
-
-#radio6:checked ~ .first{
-  margin-left: -100%;
-}
-
-/*css for automatic navigation*/
 
 .navigation-auto{
   position: absolute;
@@ -193,12 +180,4 @@ li.menu_list a:hover:not(.active) {
   background:  #393E46;
 }
 
-#radio5:checked ~ .navigation-auto .auto-btn4{
-  background:  #393E46;
-}
-
-#radio6:checked ~ .navigation-auto .auto-btn4{
-  background:  #393E46;
-}
-    
 
