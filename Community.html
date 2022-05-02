@@ -2,52 +2,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티 글쓰기</title>
+<title>커뮤니티 글 모두 보기</title>
 <link rel="stylesheet" type="text/css" href="menu.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-</head>
-
-<script>
-function store(){
-	//localstorage 있는지 확인 -> 없으면 alert창 & return
-	if(!window.localStorage){
-		alert("");
-		return;
-	}
-
-//아이디 대신 현재 강아지의 사진을 업로드함
-//로컬스토리지의 key에 이미지를 저장하는 변수 lovedog
-//이미지를 url형태로 저장함
-//왜냐하면 로컬스토리지에는 문자열밖에 못 저장하기 때문
-	let chooseFile = document.getElementById("chooseFile").value;
-	
-	filePath = String(chooseFile);
-	//전체경로를 \ 나눔.
-	let filePathSplit = filePath.split('\\'); 
-	//전체경로를 \로 나눈 길이.
-	let filePathLength = filePathSplit.length;
-	//마지막 경로를 .으로 나눔.
-	let fileNameSplit = filePathSplit[filePathLength-1].split('.');
-	let fileName = fileNameSplit[0];
-	let space = document.getElementById("space").value; 
-	// 로컬 스토리지에 저장(혹은 수정)
-	localStorage.setItem(fileName, space);
-
-	alert("글이 저장되었습니다.");
-	// 저장 후 <input>에 입력된 단어 지우기
-	chooseFile.value = "";
-	space.value = "";
-
-}
-
-function viewAll() {
-	window.open("Community-view.html", "viewwin");
-}	
-
-</script>
-
 <style>
 h1{
 	background-color: #e1e1e6;
@@ -57,44 +16,46 @@ h1{
 	border:3px solid #4e4e5e;
 	border-radius:20px;
 }
-textarea {
-	font-size : 1.1em;
+table{
+	width: 100%;
+	background-color :#ffffd1;
 	font-family: 'Jua', sans-serif;
-	background-color :#d2e1fa;
+	font-size : 20px;
+	border-top:1px solid #393E46;
+	border-collapse: collapse;
 }
-
-form{
-font-family: 'Jua', sans-serif;
-font-size: 20px;
-
+th, td {
+    border-bottom: 1px solid #393E46;
+    padding : 4px 0;
+    line-height : 50px;
+    padding-left : 20px;
+    height:180px;
+  }
+span {
+	padding-left : 4px;
+	padding-right : 3px;
+	font-family: 'Jua', sans-serif;
 }
-
-#save{
-	width: 100px;
-    height: 50px;
-    position: absolute;
-    left: 30%;
-    border-radius:20px;
+#write{
+	width: 90px;
+    height: 90px;
+    position: fixed;
+    bottom: 10%;
+    right:10%;
+    border-radius: 45px;
     font-family: 'Jua', sans-serif;
     font-size: 20px;
+    z-index:10;
 }
 
-#view{
-	width: 120px;
-    height: 50px;
-    position: absolute;
-    left: 40%;
-    border-radius:20px;
-    font-family: 'Jua', sans-serif;
-    font-size: 20px;
-}
 </style>
+</head>
 
 <script>
 //버튼에 마우스를 올리면 버튼 색상이 변하는 이벤트 발생
 let w;
 function init(){
-	w = document.getElementById("view");
+	w = document.getElementById("write");
 	w.addEventListener("mouseover",over);
 	w.addEventListener("mouseout",out);
 }
@@ -105,13 +66,12 @@ function over(){
 }
 
 function out(){
-	w.style.background = "#ffffd1";
+	w.style.background = "white";
 	w.style.color = "black";
 }
 </script>
 
 <body onload="init()">
-
 <header>
 <img src="logo.png" 
 style="display: block;
@@ -130,19 +90,34 @@ style="display: block;
   </nav>
 </div>
 
-<h1>커뮤니티 글쓰기</h1>
-<form>
-<br>	반려동물의 사진을 올려주세요!		
-<input id="chooseFile"  type="file" name="chooseFile" accept="image/*"><br><br>
-	<textarea id="space" cols="50" rows="10">
-반려동물의 이름 : <br>
-작성자 이름 : <br>
-내용 : <br>
-	</textarea><br>
-	<br>
+<h1>커뮤니티 글 모두 보기</h1>
+<script>
+if(window.localStorage){
+	document.write("<table>");
 
-<input id="save" type="button" value="저장" onclick="store()">
-<span><input id="view" type="button" value="전체 글 보기" onclick="viewAll()"></span>
+	for(i=0 ; i < localStorage.length ; i++){
+		let key = localStorage.key(i);
+		let val = localStorage.getItem(key);
+		
+		document.write("<tr>");
+		document.write("<td><span>" + (i+1) + "번째 글</span><td>");
+		document.write("<th><img src=" + key+".jpg width=160 height=170></th>");
+		document.write("<td>"+val+"</td>");
+		document.write("</tr>");
+	}
+	document.write("</table>");
+}
+else
+	alert("지원하지 않습니다.");
+	
+function viewAll() {
+	window.open("Community.html", "viewwin");
+}	
+</script>
+<form>
+<input id="write" type="button" value="글쓰기" onclick="viewAll()">
 </form>
+
 </body>
 </html>
+
