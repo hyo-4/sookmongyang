@@ -8,22 +8,64 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <style>
-h3{
+h1{
+	background-color: #e1e1e6;
 	font-family: 'Jua', sans-serif;
+	padding :2%;
+	left: 2%;
+	border:3px solid #4e4e5e;
+	border-radius:20px;
 }
 table{
-	background-color : aliceblue;
+	width: 65%;
+	background-color :#ffffd1;
 	font-family: 'Jua', sans-serif;
+	border-top:1px solid #393E46;
+	border-collapse: collapse;
 }
+th, td {
+    border-bottom: 1px solid #393E46;
+  }
 span {
 	padding-left : 3px;
 	padding-right : 3px;
 	font-family: 'Jua', sans-serif;
 }
+#write{
+	width: 90px;
+    height: 90px;
+    position: absolute;
+    top: 80%;
+    left: 70%;
+    border-radius: 45px;
+    font-family: 'Jua', sans-serif;
+    font-size: 20px;
+}
+
 </style>
 </head>
 
-<body>
+<script>
+//버튼에 마우스를 올리면 버튼 색상이 변하는 이벤트 발생
+let w;
+function init(){
+	w = document.getElementById("write");
+	w.addEventListener("mouseover",over);
+	w.addEventListener("mouseout",out);
+}
+
+function over(){
+	w.style.background = "#393E46";
+	w.style.color = "white";
+}
+
+function out(){
+	w.style.background = "white";
+	w.style.color = "black";
+}
+</script>
+
+<body onload="init()">
 <header>
 <img src="logo.png" 
 style="display: block;
@@ -42,8 +84,7 @@ style="display: block;
   </nav>
 </div>
 
-<h3>커뮤니티 글 모두 보기</h3>
-<hr>
+<h1>커뮤니티 글 모두 보기</h1>
 <script>
 if(window.localStorage){
 	document.write("<table>");
@@ -67,10 +108,10 @@ function viewAll() {
 	window.open("Community.html", "viewwin");
 }	
 </script>
-
 <form>
-<input type="button" value="글쓰기" onclick="viewAll()">
+<input id="write" type="button" value="글쓰기" onclick="viewAll()">
 </form>
 
 </body>
 </html>
+
