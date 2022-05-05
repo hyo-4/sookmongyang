@@ -103,6 +103,7 @@ if(window.localStorage){
 		document.write("<td><span>" + (i+1) + "번째 글</span><td>");
 		document.write("<th><img src=" + key+".jpg width=160 height=170></th>");
 		document.write("<td>"+val+"</td>");
+		document.write("<td><input id=\"delete\" type=\"button\" value=\"삭제하기\" onclick=\"remove()\"></td>");
 		document.write("</tr>");
 	}
 	document.write("</table>");
@@ -113,6 +114,29 @@ else
 function viewAll() {
 	window.open("Community.html", "viewwin");
 }	
+
+function remove() {
+	//localstorage 있는지 확인-> 없으면 alert창 & return
+	if(!window.localStorage){
+		alert("");
+		return;
+	}
+	// 단어 삭제
+	let delConfirm = confirm('글이 삭제됩니다.');
+    if (delConfirm) {
+    	let key = localStorage.key(0);
+    	let val = localStorage.getItem(key);	
+    	localStorage.removeItem(key);
+    	localStorage.removeItem(val);
+       alert('삭제되었습니다.');
+   }
+    else {
+      alert('삭제가 취소되었습니다.');
+   }
+	key.innerHTML="";
+	val.innerHTML="";
+}
+
 </script>
 <form>
 <input id="write" type="button" value="글쓰기" onclick="viewAll()">
