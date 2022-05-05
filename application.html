@@ -7,7 +7,9 @@
 <script>
 function submits(){
 	let p = document.getElementById("prompt");
-		
+	let inputDate = document.getElementById("date").value;
+	let inputTime = document.getElementById("time").value;
+	sessionStorage.setItem(inputDate,inputTime);
 	p.innerHTML = "신청되셨습니다.";
 }
 
